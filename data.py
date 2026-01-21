@@ -218,7 +218,7 @@ class test_dataset:
     os.path.join(gt_root, f)
     for f in os.listdir(gt_root)
     if f.endswith(".jpg") or f.endswith(".png")
-])
+]
         self.depths = [
     os.path.join(depth_root, f)
     for f in os.listdir(depth_root)
