@@ -97,13 +97,25 @@ def randomPepper(img):
 class SalObjDataset(data.Dataset):
     def __init__(self, image_root, gt_root, depth_root, trainsize):
         self.trainsize = trainsize
-        self.images = [image_root + f for f in os.listdir(image_root) if f.endswith('.jpg')]
+        self.images = [
+    os.path.join(image_root, f)
+    for f in os.listdir(image_root)
+    if f.endswith(".jpg")
+]
 
-        self.gts = [gt_root + f for f in os.listdir(gt_root) if f.endswith('.jpg')
-                    or f.endswith('.png')]
+        self.gts = [
+    os.path.join(gt_root, f)
+    for f in os.listdir(gt_root)
+    if f.endswith(".jpg") or f.endswith(".png")
+]
 
-        self.depths = [depth_root + f for f in os.listdir(depth_root) if f.endswith('.bmp')
-                       or f.endswith('.png') or f.endswith('.jpg')]
+
+        self.depths = [
+    os.path.join(depth_root, f)
+    for f in os.listdir(depth_root)
+    if f.endswith(".bmp") or f.endswith(".png") or f.endswith(".jpg")
+]
+
         self.images = sorted(self.images)
         self.gts = sorted(self.gts)
         self.depths = sorted(self.depths)
@@ -196,11 +208,23 @@ def get_loader(image_root, gt_root, depth_root, batchsize, trainsize, shuffle=Tr
 class test_dataset:
     def __init__(self, image_root, gt_root, depth_root, testsize):
         self.testsize = testsize
-        self.images = [image_root + f for f in os.listdir(image_root) if f.endswith('.jpg')]
-        self.gts = [gt_root + f for f in os.listdir(gt_root) if f.endswith('.jpg')
-                    or f.endswith('.png')]
-        self.depths = [depth_root + f for f in os.listdir(depth_root) if f.endswith('.bmp')
-                       or f.endswith('.png') or f.endswith('.jpg')]
+        self.images = [
+    os.path.join(image_root, f)
+    for f in os.listdir(image_root)
+    if f.endswith(".jpg")
+]
+
+        self.gts = [
+    os.path.join(gt_root, f)
+    for f in os.listdir(gt_root)
+    if f.endswith(".jpg") or f.endswith(".png")
+])
+        self.depths = [
+    os.path.join(depth_root, f)
+    for f in os.listdir(depth_root)
+    if f.endswith(".bmp") or f.endswith(".png") or f.endswith(".jpg")
+]
+
 
         self.images = sorted(self.images)
         self.gts = sorted(self.gts)
