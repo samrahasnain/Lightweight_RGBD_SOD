@@ -15,7 +15,7 @@ from model.LESOD import LESOD
 from utils import clip_gradient, adjust_lr_2, opt_save, iou_loss, seed_torch, load_param
 from validate_metrics import metrics_v1, metrics_dict_to_float
 
-os.environ['CUDA_VISIBLE_DEVICES'] = "2"
+os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 parser = argparse.ArgumentParser()
 parser.add_argument('--epoch_list', type=list, default=[50, 150, 100], help='epoch list')
 parser.add_argument('--lr_list', type=list, default=[5e-4, 5e-5, 5e-6], help='lr list')
@@ -183,3 +183,4 @@ for epoch in range(sum(opt.epoch_list)):
     train(train_loader, model, optimizer, epoch)
     if epoch % 1 == 0 or epoch == sum(opt.epoch_list) - 1:
         validate(test_dataset, model, opt, epoch)
+
