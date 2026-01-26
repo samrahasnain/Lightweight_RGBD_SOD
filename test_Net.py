@@ -14,7 +14,7 @@ from model.LESOD import LESOD
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainsize', type=int, default=384, help='testing size')
 parser.add_argument('--gpu_id', type=str, default='0', help='select gpu id')
-parser.add_argument('--test_path', type=str, default='/path/to/test/dataset/root/', help='test dataset path')
+parser.add_argument('--test_path', type=str, default='/kaggle/input/rgb-d-trainset/test_data/', help='test dataset path')
 parser.add_argument('--save_path', type=str, default='./test_maps/LESOD/', help='path to save maps')
 parser.add_argument('--pth_path', type=str, default='./ckps/LESOD/LESOD_best_RGBD.pth', help='path to trained model')
 
@@ -32,7 +32,7 @@ model.load_state_dict(torch.load(opt.pth_path))
 model.eval()
 model.cuda()
 
-test_datasets = ['LFSD', 'NJU2K', 'SIP', 'STERE', 'NLPR', 'DUT-RGBD', 'SSD']
+test_datasets = ['LFSD', 'NJU2K', 'SIP', 'STERE', 'NLPR', 'DUT', 'SSD']
 
 for dataset in test_datasets:
     save_path = opt.save_path + dataset + '/'
